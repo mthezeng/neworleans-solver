@@ -59,8 +59,7 @@ public class NewOrleansSolver {
 		sizeOfClass = in.nextInt();
 		while (sizeOfClass <= 1) {
 			if (sizeOfClass < 0) {
-				System.out.println("ERROR: Really? You can't have a negative class size.");
-				System.out.println("I know you're in elementary school, but surely you must know this.");
+				System.out.println("ERROR: You cannot have a negative class size");
 			} else {
 				System.out.println("ERROR: There must be at least 2 people in your class in order to play.");
 			}
