@@ -6,7 +6,7 @@ New Orleans Solver version 2.0 in python3
  * This program will allow its user to solve the "Great Big House in New Orleans" game,
  * played by the students of Miss Jenny Bowman at Scottish Corners Elementary School.
  * The program will give the user the exact position at which they must sit in order to win.
- * 
+ *
  * NOTE:
  * I realized an interesting detail while developing this program, which regards the initial
  * position of the "pumpkin". This program assumes that at the very start of the game, the
@@ -42,28 +42,6 @@ def get_class_size():
                 size_of_class = int(input('How many people will be playing today? '))
         return size_of_class
 
-def is_game_over(the_class):
-        game_over = False
-        if len(the_class) == 1:
-                game_over = True
-        return game_over
-
-def next_out(the_class, current):
-        # returns one plus the index of the next student to get out within the list the_class
-        out = current
-        for i in range(8):
-                out = next_student(the_class, out)
-        return out
-
-def next_student(the_class, current):
-        # returns one plus the index of the next student still in the game within the list the_class
-        student = current
-        if current < len(the_class):
-                student = current + 1
-        elif current == len(the_class):
-                student = 1
-        return student
-        
 def output_winner(the_winner, positions):
         print('Position {0} will win.'.format(the_winner))
         print('You must sit {0} position(s) to the right of the student who starts with the pumpkin to win.'.format(positions))
@@ -84,20 +62,28 @@ def prompt_play_again():
                 print('*****')
         return play
 
+def add_eight(class_size):
+    winning_pos = 2
+    temp_class_size = 2
+    if class_size == 2:
+        winning_pos = 2
+    else:
+        while temp_class_size != class_size:
+            if winning_pos == 1:
+                winning_pos = winning_pos + 7
+                temp_class_size = temp_class_size + 1
+            else:
+                winning_pos = winning_pos + 8
+                temp_class_size = temp_class_size + 1
+            while winning_pos > temp_class_size:
+                winning_pos = winning_pos - temp_class_size
+    return winning_pos
+
 print_intro()
 play_again = True
 while play_again:
         class_size = get_class_size()
-        class_array = []
-        for i in range(class_size):
-                class_array.append(i + 1)
-        current_student = 1 #one plus index of the student currently with pumpkin
-        student_out = 0 #initialized to 0
-        while not is_game_over(class_array):
-                student_out = next_out(class_array, current_student)
-                del class_array[student_out - 1]
-                current_student = student_out - 1
-        winner = class_array[0]
+        winner = add_eight(class_size)
         positions_right = winner - 1
         output_winner(winner, positions_right)
         play_again = prompt_play_again()
