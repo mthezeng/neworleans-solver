@@ -1,7 +1,7 @@
 """
-orleans2.py
+orleans3.py
 
-New Orleans Solver version 2.0 in python3
+New Orleans Solver version 3.0 in python3
  * DESCRIPTION:
  * This program will allow its user to solve the "Great Big House in New Orleans" game,
  * played by the students of Miss Jenny Bowman at Scottish Corners Elementary School.
@@ -17,7 +17,7 @@ New Orleans Solver version 2.0 in python3
  * getting out first. That version is not simulated by this project.
 
  @author Michael Zeng
- @version 20171104
+ @version 20171109
 """
 
 def print_intro():
