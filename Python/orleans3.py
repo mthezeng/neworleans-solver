@@ -20,6 +20,9 @@ New Orleans Solver version 3.0 in python3
  @version 20171109
 """
 
+import time
+from sys import stdout
+
 def print_intro():
 	print('*****')
 	print('Great Big House in New Orleans,')
@@ -46,27 +49,42 @@ def get_class_size():
             size_of_class = int(input('How many people will be playing today? '))
     return size_of_class
 
-def output_winner(the_winner, positions):
-        print('Position {0} will win.'.format(the_winner))
-        print('You must sit {0} position(s) to the right of the student who starts with the pumpkin to win.'.format(positions))
-        print('(Assuming the pumpkin is passed to the right every time.)\n')
-        print('Congratulations! You won a B.U.G. Award!!! :)')
+def output_winner(the_winner, start_time):
+    elapsed = time.time() - start_time
+    print('\nPosition {0} will win.'.format(the_winner))
+    print('You must sit {0} position(s) to the right of the student who starts with the pumpkin to win.'.format(the_winner - 1))
+    print('Congratulations! You won a B.U.G. Award!!! :)')
+    print('Executed in {0} seconds.'.format(elapsed))
 
 def prompt_play_again():
-        play = False
+    play = False
+    next_play = input('Would you like to play again? (y/n): ')
+    while next_play != 'y' and next_play != 'n':
+        print('Error detected. {0} not recognized.'.format(next_play))
         next_play = input('Would you like to play again? (y/n): ')
-        while next_play != 'y' and next_play != 'n':
-                print('Error detected. {0} not recognized.'.format(next_play))
-                next_play = input('Would you like to play again? (y/n): ')
-        if next_play == 'n':
-                play = False
-        elif next_play == 'y':
-                play = True
-                print('Playing again...')
-                print('*****')
-        return play
+    if next_play == 'n':
+        play = False
+    elif next_play == 'y':
+        play = True
+        print('Playing again...')
+        print('*****')
+    return play
 
-def add_eight(class_size):
+def prompt_progresstracker():
+    print('An extremely large class size was detected.')
+    print('The progress of the calculation can be tracked and displayed.')
+    print('This can be useful for visualizing what the program is doing.')
+    print('However, it significantly increases the time needed to obtain the result.')
+    response = input('Would you like to track the progress of the calculation? (y/n): ')
+    while response != 'y' and response != 'n':
+        print('Error detected. {0} not recognized.'.format(response))
+        response = input('Would you like to track the progress of the calculation? (y/n): ')
+    if response == 'y':
+        return True
+    elif response == 'n':
+        return False
+
+def add_eight(class_size, progresstracker_needed):
     winning_pos = 2
     temp_class_size = 2
     if class_size == 2:
@@ -81,14 +99,26 @@ def add_eight(class_size):
                 temp_class_size = temp_class_size + 1
             while winning_pos > temp_class_size:
                 winning_pos = winning_pos - temp_class_size
+            if progresstracker_needed:
+                #progress tracker below makes the program less efficient
+                if temp_class_size % 1000000 == 0:
+                    if temp_class_size == 1000000:
+                        print('Currently calculating class size 999999', end="")
+                    digits = len(str(temp_class_size - 1))
+                    delete = "\b" * (digits)
+                    print('{0}{1}'.format(delete, temp_class_size), end="")
+                    stdout.flush()
     return winning_pos
 
 print_intro()
 play_again = True
 while play_again:
-        class_size = get_class_size()
-        winner = add_eight(class_size)
-        positions_right = winner - 1
-        output_winner(winner, positions_right)
-        play_again = prompt_play_again()
+    class_size = get_class_size()
+    progresstracker = False
+    if class_size >= 5000000:
+        progresstracker = prompt_progresstracker()
+    t = time.time()
+    winner = add_eight(class_size, progresstracker)
+    output_winner(winner, t)
+    play_again = prompt_play_again()
 print('Have a great day!')
