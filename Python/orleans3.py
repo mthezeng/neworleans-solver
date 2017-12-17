@@ -32,12 +32,12 @@ def print_intro():
 	print('*****')
 
 def get_class_size():
-    size_of_class = 2
-    try:
-        size_of_class = int(input('How many people will be playing today? '))
-    except ValueError:
-        print('ERROR: Value must be an integer.')
-        size_of_class = int(input('How many people will be playing today? '))
+    while True:
+        try:
+            size_of_class = int(input('How many people will be playing today? '))
+            break
+        except ValueError:
+            print('ERROR: Class size must be an integer.')
     while size_of_class <= 1:
             if size_of_class < 0:
                     print('ERROR: Class size cannot be negative.')
