@@ -32,6 +32,7 @@ def print_intro():
 	print('*****')
 
 def get_class_size():
+    size_of_class = 2
     try:
         size_of_class = int(input('How many people will be playing today? '))
     except ValueError:
