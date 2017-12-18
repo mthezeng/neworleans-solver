@@ -52,7 +52,6 @@ def get_class_size():
 def output_winner(the_winner, start_time):
     elapsed = time.time() - start_time
     print('\nPosition {0} will win.'.format(the_winner))
-    print('You must sit {0} position(s) to the right of the student who starts with the pumpkin to win.'.format(the_winner - 1))
     print('Congratulations! You won a B.U.G. Award!!! :)')
     print('Executed in {0} seconds.'.format(elapsed))
 
@@ -100,7 +99,6 @@ def add_eight(class_size, progresstracker_needed):
             while winning_pos > temp_class_size:
                 winning_pos = winning_pos - temp_class_size
             if progresstracker_needed:
-                #progress tracker below makes the program less efficient
                 if temp_class_size % 1000000 == 0:
                     if temp_class_size == 1000000:
                         print('Currently calculating class size 999999', end="")
