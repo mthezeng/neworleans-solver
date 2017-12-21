@@ -1,25 +1,3 @@
-"""def print_intro():
-	print('*****')
-	print('Great Big House in New Orleans,')
-	print('Forty stories hi-gh,')
-	print('Every room that I\'ve been in,')
-	print('Filled with pumpkin pi-e.')
-	print('*****')
-	print('Welcome! This program will tell you where you need to sit in order to win "Great Big House in New Orleans".')
-	print('First, we\'ll need one piece of information from you.')
-	print('*****')"""
-
-def get_class_size():
-        size_of_class = int(input('How many people will be playing today? '))
-        while size_of_class <= 1:
-                if size_of_class < 0:
-                        print('ERROR: Cannot have negative class size')
-                else:
-                        print('ERROR: At least 2 students must be in class')
-
-                size_of_class = input('How many people will be playing today? ')
-        return size_of_class
-
 def is_game_over(the_class):
         """checks whether only one student is
         left in the game, and if so, returns true
@@ -68,23 +46,9 @@ def find_winner(the_class):
                 else:
                         i = i + 1
         return winner
-        
+
 def output_winner(the_winner, positions, class_size):
         print('Position {0} will win with a class size {1}.'.format(the_winner, class_size))
-
-def prompt_play_again():
-        play = False
-        next_play = input('Would you like to play again? (y/n): ')
-        while next_play != 'y' and next_play != 'n':
-                print('Error detected. {0} not recognized.'.format(next_play))
-                next_play = input('Would you like to play again? (y/n): ')
-        if next_play == 'n':
-                play = False
-        elif next_play == 'y':
-                play = True
-                print('Playing again...')
-                print('*****')
-        return play
 
 def main(index):
         result_array = []
