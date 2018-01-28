@@ -4,10 +4,10 @@ Solver for Great Big House in New Orleans
 This allows the user to solve the game Great Big House in New Orleans.
 
 The background and development of this project is explained at:
-https://thisworld-me.blogspot.com/2017/11/great-big-house-in-new-orleans.html
+http://www.thisworldandme.com/2017/11/great-big-house-in-new-orleans.html
 
 The logic for orleans3.py and orleans-minimal.py is also explained in the first blog post above, but is also documented at:
-https://thisworld-me.blogspot.com/2017/11/great-big-house-in-new-orleans-improved.html
+http://www.thisworldandme.com/2017/11/great-big-house-in-new-orleans-improved.html
 
 Main implementation:
 * orleans3.py (neworleans-solver/Python/orleans3.py)
