@@ -6,7 +6,7 @@ New Orleans Solver version 2.0 in python3
  * This program will allow its user to solve the "Great Big House in New Orleans" game,
  * played by the students of Miss Jenny Bowman at Scottish Corners Elementary School.
  * The program will give the user the exact position at which they must sit in order to win.
- * 
+ *
  * NOTE:
  * I realized an interesting detail while developing this program, which regards the initial
  * position of the "pumpkin". This program assumes that at the very start of the game, the
@@ -63,7 +63,7 @@ def next_student(the_class, current):
         elif current == len(the_class):
                 student = 1
         return student
-        
+
 def output_winner(the_winner, positions):
         print('Position {0} will win.'.format(the_winner))
         print('You must sit {0} position(s) to the right of the student who starts with the pumpkin to win.'.format(positions))
@@ -88,9 +88,7 @@ print_intro()
 play_again = True
 while play_again:
         class_size = get_class_size()
-        class_array = []
-        for i in range(class_size):
-                class_array.append(i + 1)
+        class_array = [i + 1 for i in range(class_size)]
         current_student = 1 #one plus index of the student currently with pumpkin
         student_out = 0 #initialized to 0
         while not is_game_over(class_array):
