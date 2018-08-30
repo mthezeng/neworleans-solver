@@ -20,17 +20,6 @@ New Orleans Solver version 2.0 in python3
  @version 20171104
 """
 
-def print_intro():
-	print('*****')
-	print('Great Big House in New Orleans,')
-	print('Forty stories hi-gh,')
-	print('Every room that I\'ve been in,')
-	print('Filled with pumpkin pi-e.')
-	print('*****')
-	print('Welcome! This program will tell you where you need to sit in order to win "Great Big House in New Orleans".')
-	print('First, we\'ll need one piece of information from you.')
-	print('*****')
-
 def get_class_size():
         size_of_class = int(input('How many people will be playing today? '))
         while size_of_class <= 1:
@@ -66,9 +55,6 @@ def next_student(the_class, current):
 
 def output_winner(the_winner, positions):
         print('Position {0} will win.'.format(the_winner))
-        print('You must sit {0} position(s) to the right of the student who starts with the pumpkin to win.'.format(positions))
-        print('(Assuming the pumpkin is passed to the right every time.)\n')
-        print('Congratulations! You won a B.U.G. Award!!! :)')
 
 def prompt_play_again():
         play = False
@@ -84,7 +70,6 @@ def prompt_play_again():
                 print('*****')
         return play
 
-print_intro()
 play_again = True
 while play_again:
         class_size = get_class_size()
